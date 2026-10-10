@@ -5,7 +5,7 @@ const App = () => (
     <NixpkgsTracker />
     <footer class="app-footer">
       <a
-        href="https://github.com/ocfox/nixpkgs-tracker/"
+        href="https://github.com/Nix-ee/nixpkgs-tracker/tree/nix-ee"
         target="_blank"
         rel="noopener noreferrer"
       >

@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Lexend", system-ui, sans-serif;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
 .tracker {
   max-width: 640px;
   margin: 0 auto;
   padding: 28px 16px 72px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: inherit;
   font-size: 16px;
   color: var(--text);
   background: var(--bg);
@@ -10,17 +24,19 @@
 
 /* --- color scheme --- */
 :root {
-  --bg: #fff;
-  --text: #1a1a2e;
-  --muted: #6b7280;
-  --border: #d1d5db;
-  --card-bg: #f9fafb;
-  --input-bg: #fff;
-  --green: #059669;
-  --red: #dc2626;
-  --amber: #d97706;
-  --blue: #0969da;
-  --blue-hover: #0550ae;
+  --accent: hsl(270 60% 75%);
+  --accent-light: hsl(270 60% 88%);
+  --bg: #0e0e12;
+  --text: #ffffff;
+  --muted: hsl(0 0% 100% / 0.55);
+  --border: hsl(from var(--accent) h s l / 0.45);
+  --card-bg: hsl(from var(--accent) h s l / 0.08);
+  --input-bg: hsl(from var(--accent) h s l / 0.08);
+  --green: hsl(140 55% 65%);
+  --red: hsl(0 70% 70%);
+  --amber: hsl(40 80% 65%);
+  --blue: var(--accent);
+  --blue-hover: var(--accent-light);
 }
 
 /* --- header --- */
@@ -109,18 +125,22 @@
   width: 100%;
   padding: 10px 14px;
   font-size: 16px;
-  color: var(--text);
-  background: var(--input-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  color: var(--accent);
+  background: hsl(from var(--accent) h s l / 0.08);
+  border: 1.5px solid hsl(from var(--accent) h s l / 0.45);
+  border-radius: 8px;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: all 0.2s ease;
+}
+
+.input::placeholder {
+  color: hsl(from var(--accent) h s l / 0.55);
 }
 
 .input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 20%, transparent);
+  border-color: hsl(from var(--accent) h s l / 0.65);
+  background: hsl(from var(--accent) h s l / 0.18);
 }
 
 .input:disabled {
@@ -143,16 +163,19 @@
   padding: 9px 20px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--text);
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  color: var(--accent);
+  background: hsl(from var(--accent) h s l / 0.08);
+  border: 1.5px solid hsl(from var(--accent) h s l / 0.45);
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: all 0.2s ease;
 }
 
 .btn:hover:not(:disabled) {
-  background: var(--border);
+  background: hsl(from var(--accent) h s l / 0.18);
+  border-color: hsl(from var(--accent) h s l / 0.65);
+  color: var(--accent-light);
+  backdrop-filter: blur(1px);
 }
 
 .btn:disabled {
@@ -166,13 +189,15 @@
 }
 
 .btn-primary {
-  color: #fff;
-  background: var(--blue);
-  border-color: var(--blue);
+  color: var(--accent);
+  background: hsl(from var(--accent) h s l / 0.08);
+  border-color: hsl(from var(--accent) h s l / 0.45);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--blue-hover);
+  background: hsl(from var(--accent) h s l / 0.18);
+  border-color: hsl(from var(--accent) h s l / 0.65);
+  color: var(--accent-light);
 }
 
 .btn-small {
@@ -188,7 +213,7 @@
   color: var(--red);
   background: color-mix(in srgb, var(--red) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--red) 25%, transparent);
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 /* --- result card --- */
@@ -196,7 +221,7 @@
   padding: 20px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .pr-title {
@@ -230,7 +255,7 @@
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--muted);
-  background: #fff;
+  background: var(--card-bg);
 }
 
 .badge-merged {
@@ -308,7 +333,7 @@
   border: 1px solid var(--green);
   border-radius: 2px;
   position: relative;
-  background: #fff;
+  background: transparent;
 }
 
 .status-item.merged .status-icon:checked::after {
@@ -420,7 +445,6 @@
   right: 0;
   text-align: center;
   padding: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13px;
   background: color-mix(in srgb, var(--bg, #fff) 92%, transparent);
   backdrop-filter: blur(6px);
